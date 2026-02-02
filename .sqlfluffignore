@@ -1,0 +1,4 @@
+**/bin/**
+**/obj/**
+**/*.generated.sql
+**/*_snapshot.sql

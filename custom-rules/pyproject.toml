@@ -1,0 +1,12 @@
+[project]
+name = "custom-rules"
+version = "0.0.1"
+requires-python = ">=3.9"
+dependencies = ["sqlfluff"]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project.entry-points.sqlfluff]
+custom_rules = "custom_rules"

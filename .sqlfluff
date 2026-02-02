@@ -1,0 +1,63 @@
+# .sqlfluff
+[sqlfluff]
+dialect = tsql
+templater = raw
+exclude_rules = AL09,AL03
+output_line_length = 120
+max_line_length = 140
+load_macros_from_path = .custom_rules
+
+large_file_skip_byte_limit = 0
+
+# Keep changes focused on indentation/casing rather than rewriting structure.
+runaway_limit = 10
+sql_file_exts = .sql,.tsql
+
+[sqlfluff:indentation]
+indent_unit = space
+tab_space_size = 4
+indented_joins = true
+indented_ctes = true
+indented_using_on = true
+template_blocks_indent = true
+
+
+[sqlfluff:layout:type:semicolon]
+spacing_before = touch
+
+[sqlfluff:rules:capitalisation.keywords]
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.functions]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.literals]
+capitalisation_policy = upper
+
+[sqlfluff:rules:capitalisation.types]
+capitalisation_policy = lower
+
+[sqlfluff:rules:capitalisation.identifiers]
+extended_capitalisation_policy = consistent
+
+[sqlfluff:rules:layout.indent]
+indent_unit = space
+tab_space_size = 4
+
+[sqlfluff:rules:layout.long_lines]
+max_line_length = 120
+ignore_comment_lines = true
+ignore_comment_clauses = true
+
+[sqlfluff:rules:layout.select_targets]
+wildcard_policy = single
+
+[sqlfluff:rules:layout.operators]
+spacing_within = consistent
+
+[sqlfluff:rules:layout.spacing]
+spacing_after = single
+spacing_before = single
+
+[sqlfluff:rules:references.from]
+force_enable = True
