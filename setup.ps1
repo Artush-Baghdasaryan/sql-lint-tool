@@ -103,6 +103,32 @@ function Install-CustomRulesPlugin {
     Write-Host "Custom rules plugin loaded."
 }
 
+function Ensure-LocalGitIgnore {
+    $gitDir = Join-Path $RepoRoot ".git"
+    if (-not (Test-Path $gitDir)) {
+        Write-Host "No .git folder found. Skipping local git exclude setup."
+        return
+    }
+
+    $excludeFile = Join-Path $gitDir "info\exclude"
+
+    if (-not (Test-Path $excludeFile)) {
+        Write-Host "Creating git exclude file: $excludeFile"
+        New-Item -ItemType File -Path $excludeFile | Out-Null
+    }
+
+    $entry = "sql-lint-tool/"
+
+    $content = Get-Content $excludeFile -ErrorAction SilentlyContinue
+    if ($content -notcontains $entry) {
+        Add-Content $excludeFile "`n# SQL lint tool (local)`n$entry"
+        Write-Host "Added 'sql-lint-tool/' to .git/info/exclude"
+    } else {
+        Write-Host "'sql-lint-tool/' already present in git exclude."
+    }
+}
+
+
 Write-Host "=== SQLFluff Setup ==="
 Write-Host "Tool directory : $ToolDir"
 Write-Host "Repo root      : $RepoRoot"
@@ -116,5 +142,7 @@ Install-Reqs
 Verify-Sqlfluff
 
 Install-CustomRulesPlugin
+
+Ensure-LocalGitIgnore
 
 Write-Host "✅ Setup completed."
