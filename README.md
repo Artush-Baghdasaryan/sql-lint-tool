@@ -63,10 +63,10 @@ For entire solution
 3. Name: "SQL Lint" / "SQL Fix"
 4. Program: powershell
 5. Arguments:
-	For lint
-		5.1 -NoProfile -ExecutionPolicy Bypass -File "$ProjectFileDir$\sql-lint-tool\run.ps1" lint "$FilePath$" 
-	For Fix
-		5.2 -NoProfile -ExecutionPolicy Bypass -File "$ProjectFileDir$\sql-lint-tool\run.ps1" fix "$FilePath$" 
+	For lint:
+		-NoProfile -ExecutionPolicy Bypass -File "$ProjectFileDir$\sql-lint-tool\run.ps1" lint "$FilePath$" 
+	For Fix:
+		-NoProfile -ExecutionPolicy Bypass -File "$ProjectFileDir$\sql-lint-tool\run.ps1" fix "$FilePath$" 
 6. Click `Ok`
 7. Now you can run these tools from `Tools -> External Tools -> SQL Lint / SQL Fix`
 
